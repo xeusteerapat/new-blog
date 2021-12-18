@@ -112,22 +112,34 @@ const Hr = () => {
 };
 
 const MDXComponents = {
-  h1: props => <Heading as='h1' size='xl' my={4} {...props} />,
-  h2: props => <DocsHeading as='h2' size='lg' fontWeight='bold' {...props} />,
-  h3: props => <DocsHeading as='h3' size='md' fontWeight='bold' {...props} />,
-  h4: props => <DocsHeading as='h4' size='sm' fontWeight='bold' {...props} />,
-  h5: props => <DocsHeading as='h5' size='sm' fontWeight='bold' {...props} />,
-  h6: props => <DocsHeading as='h6' size='xs' fontWeight='bold' {...props} />,
-  inlineCode: props => (
+  h1: (props: any) => <Heading as='h1' size='xl' my={4} {...props} />,
+  h2: (props: any) => (
+    <DocsHeading as='h2' size='lg' fontWeight='bold' {...props} />
+  ),
+  h3: (props: any) => (
+    <DocsHeading as='h3' size='md' fontWeight='bold' {...props} />
+  ),
+  h4: (props: any) => (
+    <DocsHeading as='h4' size='sm' fontWeight='bold' {...props} />
+  ),
+  h5: (props: any) => (
+    <DocsHeading as='h5' size='sm' fontWeight='bold' {...props} />
+  ),
+  h6: (props: any) => (
+    <DocsHeading as='h6' size='xs' fontWeight='bold' {...props} />
+  ),
+  inlineCode: (props: any) => (
     <Code colorScheme='yellow' fontSize='0.84em' {...props} />
   ),
-  br: props => <Box height='24px' {...props} />,
+  br: (props: any) => <Box height='24px' {...props} />,
   hr: Hr,
   a: CustomLink,
-  p: props => <Text as='p' mt={0} lineHeight='tall' {...props} fontSize='lg' />,
-  ul: props => <Box as='ul' pt={2} pl={4} ml={2} {...props} />,
-  ol: props => <Box as='ol' pt={2} pl={4} ml={2} {...props} />,
-  li: props => <Box as='li' pb={1} {...props} mb={2} />,
+  p: (props: any) => (
+    <Text as='p' mt={0} lineHeight='tall' {...props} fontSize='lg' />
+  ),
+  ul: (props: any) => <Box as='ul' pt={2} pl={4} ml={2} {...props} />,
+  ol: (props: any) => <Box as='ol' pt={2} pl={4} ml={2} {...props} />,
+  li: (props: any) => <Box as='li' pb={1} {...props} mb={2} />,
   blockquote: Quote,
 };
 
