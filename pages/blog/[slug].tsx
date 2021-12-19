@@ -5,6 +5,7 @@ import mdxPrism from "mdx-prism";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
+import React from "react";
 import readingTime from "reading-time";
 import remarkAutoLinkHeadings from "remark-autolink-headings";
 import remarkSlug from "remark-slug";
@@ -14,13 +15,15 @@ import { Params, IndividualPostProps } from "../../types/PostsTypes";
 
 const root = process.cwd();
 
-export default function Blog({ mdxSource, frontMatter }: IndividualPostProps) {
+const Blog: React.FC<IndividualPostProps> = ({ mdxSource, frontMatter }) => {
   return (
-    <BlogLayout frontMatter={frontMatter}>
+    <BlogLayout frontMatter={frontMatter} mdxSource={mdxSource}>
       <MDXRemote {...mdxSource} components={MDXComponents} />
     </BlogLayout>
   );
-}
+};
+
+export default Blog;
 
 export async function getStaticPaths() {
   const listOfPosts = fs.readdirSync(path.join(root, "data", "blog"));
