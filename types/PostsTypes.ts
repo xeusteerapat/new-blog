@@ -24,3 +24,18 @@ export type ReadingTime = {
   time: number;
   words: number;
 };
+
+export type Params = {
+  params: {
+    slug: string;
+  };
+};
+
+export type MDXSource = {
+  compiledSource: string;
+};
+
+export type IndividualPostProps = {
+  mdxSource: MDXSource;
+  frontMatter: FrontMatterType;
+};
