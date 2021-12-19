@@ -7,8 +7,9 @@ import {
 import customTheme from "../styles/theme";
 import { Global, css } from "@emotion/react";
 import { prismLightTheme, prismDarkTheme } from "../styles/prism";
+import React from "react";
 
-const GlobalStyle = ({ children }: any) => {
+const GlobalStyle: React.FC = ({ children }) => {
   const { colorMode } = useColorMode();
   return (
     <>
