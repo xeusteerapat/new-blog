@@ -15,7 +15,6 @@ import { Params, IndividualPostProps } from "../../types/PostsTypes";
 const root = process.cwd();
 
 export default function Blog({ mdxSource, frontMatter }: IndividualPostProps) {
-  console.log(frontMatter);
   return (
     <BlogLayout frontMatter={frontMatter}>
       <MDXRemote {...mdxSource} components={MDXComponents} />
@@ -47,7 +46,6 @@ export async function getStaticProps({ params }: Params) {
     : fs.readFileSync(path.join(root, "data", `${type}.mdx`), "utf-8");
 
   const { data, content } = matter(source);
-  console.log(params);
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
