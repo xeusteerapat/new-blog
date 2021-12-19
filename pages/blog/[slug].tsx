@@ -10,10 +10,12 @@ import remarkAutoLinkHeadings from "remark-autolink-headings";
 import remarkSlug from "remark-slug";
 import MDXComponents from "../../components/MDXComponent";
 import BlogLayout from "../../layout/blog";
+import { Params, IndividualPostProps } from "../../types/PostsTypes";
 
 const root = process.cwd();
 
-export default function Blog({ mdxSource, frontMatter }: any) {
+export default function Blog({ mdxSource, frontMatter }: IndividualPostProps) {
+  console.log(frontMatter);
   return (
     <BlogLayout frontMatter={frontMatter}>
       <MDXRemote {...mdxSource} components={MDXComponents} />
@@ -22,19 +24,21 @@ export default function Blog({ mdxSource, frontMatter }: any) {
 }
 
 export async function getStaticPaths() {
-  const posts = fs.readdirSync(path.join(root, "data", "blog"));
+  const listOfPosts = fs.readdirSync(path.join(root, "data", "blog"));
 
   return {
-    paths: posts.map((post: any) => ({
-      params: {
-        slug: post.replace(/\.mdx/, ""),
-      },
-    })),
+    paths: listOfPosts.map((postName: string) => {
+      return {
+        params: {
+          slug: postName.replace(/\.mdx/, ""),
+        },
+      };
+    }),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: Params) {
   const type = "blog";
   const slug = params.slug;
 
@@ -43,6 +47,7 @@ export async function getStaticProps({ params }: any) {
     : fs.readFileSync(path.join(root, "data", `${type}.mdx`), "utf-8");
 
   const { data, content } = matter(source);
+  console.log(params);
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
