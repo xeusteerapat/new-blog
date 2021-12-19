@@ -1,10 +1,10 @@
-import { useColorMode, Button, Flex, Box } from "@chakra-ui/react";
-import React from "react";
-import NextLink from "next/link";
+import { Box, Button, Flex, useColorMode } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import NextLink from "next/link";
+import React from "react";
 import DarkModeSwitch from "./DarkModeSwitch";
 
-const Container = ({ children }: any) => {
+const Container: React.FC = ({ children }) => {
   const { colorMode } = useColorMode();
 
   const backgroundColor = {
